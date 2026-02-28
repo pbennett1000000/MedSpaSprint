@@ -1,0 +1,318 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   MedSpa Sprint — Dark Luxury Design System
+   Style: Dark Premium / Performance Agency
+   Colors: Deep charcoal + warm gold — high contrast, business credibility
+   Typography: Playfair Display + Inter
+   WCAG AA compliant | prefers-reduced-motion supported
+───────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+/* ── Design Tokens ── */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  /* Backgrounds — deep charcoal (not pure black, has warmth) */
+  --color-bg: #0e0e0e;
+  --color-surface: #161616;
+  --color-surface-2: #1c1c1c;
+  --color-surface-3: #222222;
+
+  /* Text */
+  --color-text: #f0ede8;
+  /* warm white */
+  --color-text-muted: #8a8278;
+  /* warm gray */
+  --color-text-dim: #4a4540;
+  /* very muted */
+
+  /* Gold accent — metallic luxury gold */
+  --color-gold: #D4AF37;
+  /* classic metallic goldenrod */
+  --color-gold-light: #F5E27A;
+  /* bright metallic highlight */
+  --color-gold-mid: #E8C84A;
+  /* mid-tone shine */
+  --color-gold-dim: #8B6914;
+  /* deep shadow */
+  --color-gold-glow: rgba(212, 175, 55, 0.15);
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-soft: rgba(255, 255, 255, 0.04);
+  --color-border-gold: rgba(212, 175, 55, 0.22);
+}
+
+/* ── Base ── */
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-text);
+    line-height: 1.15;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ── Noise overlay (subtle texture) ── */
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+}
+
+/* ── Floating Nav ── */
+.nav-glass {
+  background: rgba(14, 14, 14, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  /* Metallic gold gradient — light sweeps across like polished metal */
+  background: linear-gradient(105deg, #8B6914 0%, #C9A020 20%, #E8C84A 42%, #F5E27A 52%, #E8C84A 62%, #C9A020 80%, #8B6914 100%);
+  color: #0e0e0e;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+  box-shadow: 0 6px 28px rgba(212, 175, 55, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover {
+  border-color: var(--color-border-gold);
+  box-shadow: 0 4px 24px rgba(201, 168, 76, 0.06);
+}
+
+.card-gold {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-gold);
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(201, 168, 76, 0.04);
+}
+
+/* ── Stat card ── */
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  text-align: center;
+  transition: border-color 200ms ease;
+}
+
+.stat-card:hover {
+  border-color: var(--color-border-gold);
+}
+
+/* ── Process step ── */
+.process-step {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 2.5rem;
+  transition: border-color 200ms ease, transform 200ms ease;
+  cursor: default;
+}
+
+.process-step:hover {
+  border-color: var(--color-border-gold);
+  transform: translateY(-2px);
+}
+
+/* ── FAQ item ── */
+.faq-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 200ms ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Section divider ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border) 30%, rgba(201, 168, 76, 0.15) 50%, var(--color-border) 70%, transparent);
+}
+
+/* ── Micro label ── */
+.micro-label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* ── Text gradient ── */
+.text-gold-gradient {
+  /* Metallic text gradient — simulates light sweeping across engraved gold lettering */
+  background: linear-gradient(105deg,
+      #8B6914 0%,
+      #C9A020 18%,
+      #E8C84A 38%,
+      #F5E27A 50%,
+      #E8C84A 62%,
+      #C9A020 80%,
+      #8B6914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Hero background ── */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212, 175, 55, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 60%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    var(--color-bg);
+}
+
+/* ── Gold badge ── */
+.gold-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(212, 175, 55, 0.09);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 100px;
+  color: var(--color-gold);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ── Icon badge ── */
+.icon-badge {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 8px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Math row (replaces testimonials) ── */
+.math-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: border-color 200ms ease;
+}
+
+.math-card:hover {
+  border-color: var(--color-border-gold);
+}
