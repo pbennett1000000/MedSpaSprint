@@ -16,6 +16,7 @@ import {
   Mail,
   Phone,
   Linkedin,
+  Instagram,
   MessageSquare,
   Target,
   Clock,
@@ -836,12 +837,15 @@ export default function App() {
               </p>
               <div className="flex gap-5">
                 {[
-                  { icon: Linkedin, label: "LinkedIn" },
-                  { icon: Mail, label: "Email" },
-                ].map(({ icon: Icon, label }) => (
+                  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/paytonjbennett/" },
+                  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/medspasprint/" },
+                  { icon: Mail, label: "Email", href: "mailto:payton@medspasprint.com" },
+                ].map(({ icon: Icon, label, href }) => (
                   <a
                     key={label}
-                    href="#"
+                    href={href}
+                    target={label !== "Email" ? "_blank" : undefined}
+                    rel={label !== "Email" ? "noopener noreferrer" : undefined}
                     aria-label={`MedSpa Sprint on ${label}`}
                     className="cursor-pointer transition-colors duration-200"
                     style={{ color: "var(--color-text-dim)" }}
@@ -861,18 +865,18 @@ export default function App() {
               <ul className="space-y-3">
                 <li className="flex items-center gap-3">
                   <Mail className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "var(--color-gold-dim)" }} aria-hidden="true" />
-                  <a href="mailto:hello@medspasprint.com" className="text-xs cursor-pointer transition-colors duration-200" style={{ color: "var(--color-text-muted)" }}
+                  <a href="mailto:payton@medspasprint.com" className="text-xs cursor-pointer transition-colors duration-200" style={{ color: "var(--color-text-muted)" }}
                     onMouseEnter={e => (e.currentTarget.style.color = "var(--color-text)")}
                     onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}>
-                    hello@medspasprint.com
+                    payton@medspasprint.com
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "var(--color-gold-dim)" }} aria-hidden="true" />
-                  <a href="tel:5551234567" className="text-xs cursor-pointer transition-colors duration-200" style={{ color: "var(--color-text-muted)" }}
+                  <a href="tel:6076246099" className="text-xs cursor-pointer transition-colors duration-200" style={{ color: "var(--color-text-muted)" }}
                     onMouseEnter={e => (e.currentTarget.style.color = "var(--color-text)")}
                     onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}>
-                    (555) 123-4567
+                    (607) 624-6099
                   </a>
                 </li>
               </ul>
