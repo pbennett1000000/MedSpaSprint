@@ -176,7 +176,7 @@ export default function App() {
                 </a>
               ))}
               <a
-                href="https://calendly.com/medspasprint"
+                href="https://calendly.com/medspasprint/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="nav-cta"
@@ -239,7 +239,7 @@ export default function App() {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
                 <a
-                  href="https://calendly.com/medspasprint"
+                  href="https://calendly.com/medspasprint/30mmin"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="hero-cta-primary"
@@ -619,7 +619,7 @@ export default function App() {
                 </div>
 
                 <a
-                  href="https://calendly.com/medspasprint"
+                  href="https://calendly.com/medspasprint/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="pricing-cta"
@@ -794,7 +794,7 @@ export default function App() {
                 We'll review your situation and determine if this makes sense for your practice. No obligation.
               </p>
               <a
-                href="https://calendly.com/medspasprint"
+                href="https://calendly.com/medspasprint/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="final-cta"
