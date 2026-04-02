@@ -940,14 +940,37 @@ function captureLeadAndLog() {
     shake('leadEmail');
     return;
   }
-  // Store lead in localStorage (for Payton to review)
-  const leads = JSON.parse(localStorage.getItem('mss_leads') || '[]');
-  leads.push({
+
+  // Build lead data
+  const leadData = {
     name, email,
     ...window._calcResults,
     timestamp: new Date().toISOString()
-  });
+  };
+
+  // Store locally as backup
+  const leads = JSON.parse(localStorage.getItem('mss_leads') || '[]');
+  leads.push(leadData);
   localStorage.setItem('mss_leads', JSON.stringify(leads));
+
+  // Send to Formspree (delivers to payton@medspasprint.com)
+  fetch('https://formspree.io/f/payton@medspasprint.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _subject: '🔥 New Calculator Lead: ' + name,
+      name: name,
+      email: email,
+      total_patients: leadData.total,
+      dormant_pct: leadData.pct + '%',
+      dormant_count: leadData.dormant,
+      avg_treatment: '$' + leadData.treatment,
+      visit_frequency: leadData.freq + 'x/yr',
+      annual_revenue_gap: '$' + (leadData.annualGap || 0).toLocaleString(),
+      sprint_recoverable: '$' + (leadData.sprintRevenue || 0).toLocaleString(),
+      roi_multiple: (leadData.roi || 0) + 'x'
+    })
+  }).catch(() => {}); // Silent fail — localStorage backup exists
 
   // Show success
   document.querySelector('.lead-capture .input-row').style.display = 'none';
