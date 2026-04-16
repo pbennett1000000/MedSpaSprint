@@ -239,7 +239,7 @@ export default function App() {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
                 <a
-                  href="https://calendly.com/medspasprint/30mmin"
+                  href="https://calendly.com/medspasprint/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="hero-cta-primary"
